@@ -16,9 +16,4 @@ class Imovel():
 
     def get_valor(self):
         return self.valor
-
-
-
-
-
     
