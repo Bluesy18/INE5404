@@ -31,3 +31,15 @@ class Veiculo():
     def get_valor(self):
         return self.valor
     
+class Cliente():
+    def __init__(self, nome, cpf, telefone, idade, email, cnh):
+        self.nome = nome
+        self.cpf = cpf
+        self.telefone = telefone
+        self.idade = idade
+        self.email = email
+        self.cnh = cnh
+
+    
+
+    
