@@ -39,7 +39,24 @@ class Cliente():
         self.idade = idade
         self.email = email
         self.cnh = cnh
-
+    
+    def get_nome(self):
+        return self.nome
+    
+    def get_cpf(self):
+        return self.cpf
+    
+    def get_telefone(self):
+        return self.telefone
+    
+    def get_idade(self):
+        return self.idade
+    
+    def get_email(self):
+        return self.email
+    
+    def get_cnh(self):
+        return self.cnh
     
 
     
