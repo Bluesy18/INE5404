@@ -1,216 +1,7 @@
 from classes import Veiculo, Cliente, Aluguel
+from cadastro_veiculuos import cadastro_veiculos
+from cadastro_clientes import cadastro_clientes
 import re
-
-def cadastro_veiculos():
-
-    cores = ["Branco", "Cinza", "Prata", "Preto", "Vermelho", "Azul"]
-    marcas = ["Fiat", "Ford", "Volkswagen", "Chevrolet", "Peugeot", "Citroen"]
-    fiatM = ["Strada", "Cronos", "Argo", "Mobi", "Uno"]
-    fordM = ["Ka", "EcoSport"]
-    volksM = ["Gol", "Polo", "Virtus", "Nivus", "Taos"]
-    chevroM = ["Cobalt", "Onix", "Spin", "Cruze"]
-    peugeotM = ["208", "2008"]
-    citroenM = ["C3", "C4 Cactus"]
-
-    placa_padrao = r'^[A-Z]{3}-\d{4}$'
-
-    while True:
-        print("=== CADASTRO DE CARROS ===")
-        while True:
-
-            placa = input("Digite a placa do carro: ")
-
-            if(re.match(placa_padrao, placa)):
-                break
-
-            else:
-                print("Placa inválida, tente novamente.")
-
-        print(placa)
-
-        while True:
-            print("Cores disponíveis: ")
-            print(*cores)
-            cor = input("Digite a cor do carro: ")
-
-            if (cor in cores):
-                break
-
-            else:
-                print("Cor inválida, tente novamente")
-
-        print(cor)
-
-        while True:
-            print("Marcas disponíveis: ")
-            print(*marcas)
-            marca = input("Digite a marca do carro: ")
-
-            if (marca in marcas):
-                break
-
-            else:
-                print("Marca inválida, tente novamente.")
-
-        match marca:
-            
-            case "Fiat":
-                while True:
-                    print("Modelos disponíveis: ")
-                    print(*fiatM)
-                    modelo = input("Digite o modelo do carro: ")
-                    if (modelo in fiatM):
-                        break
-                    else:
-                        print("Modelo inválido, tente novamente.")
-
-            case "Ford":
-                while True:
-                    print("Modelos disponíveis: ")
-                    print(*fordM)
-                    modelo = input("Digite o modelo do carro: ")
-                    if (modelo in fordM):
-                        break
-                    else:
-                        print("Modelo inválido, tente novamente.")
-
-            case "Volkswagen":
-                while True:
-                    print("Modelos disponíveis: ")
-                    print(*volksM)
-                    modelo = input("Digite o modelo do carro: ")
-                    if (modelo in volksM):
-                        break
-                    else:
-                        print("Modelo inválido, tente novamente.")
-
-            case "Chevrolet":
-                while True:
-                    print("Modelos disponíveis: ")
-                    print(*chevroM)
-                    modelo = input("Digite o modelo do carro: ")
-                    if (modelo in chevroM):
-                        break
-                    else:
-                        print("Modelo inválido, tente novamente.")
-
-            case "Peugeot":
-                while True:
-                    print("Modelos disponíveis: ")
-                    print(*peugeotM)
-                    modelo = input("Digite o modelo do carro: ")
-                    if (modelo in peugeotM):
-                        break
-                    else:
-                        print("Modelo inválido, tente novamente.")
-
-            case "Citroen":
-                while True:
-                    print("Modelos disponíveis: ")
-                    print(*citroenM)
-                    modelo = input("Digite o modelo do carro: ")
-                    if (modelo in citroenM):
-                        break
-                    else:
-                        print("Modelo inválido, tente novamente.")
-
-        print(modelo)
-
-        while True:
-            ano = int(input("Digite o ano de fabricação do carro (mínimo 2019): "))
-
-            if (ano >= 2019):
-                break
-
-            else:
-                print("Ano inválido, tente novamente.")
-
-        print(ano)
-
-        resp = input("Caso queira continuar cadastrando veículos, digite S: ").upper()
-
-        match resp:
-            case "S":
-                print("Começando novo cadastro...")
-            case _:
-                break
-
-    veic = Veiculo(placa, cor, marca, modelo, ano)
-    veiculos.append(veic)
-
-    print(veiculos[0].get_modelo())
-
-def cadastro_clientes():
-    while True:
-        print("=== CADASTRO DE CLIENTES ===")
-
-        nome = input("Digite o nome: ")
-
-        print(nome)
-
-        while True:
-            cpf = input("Digite o CPF (sem pontos ou traços): ")
-
-            if (len(cpf) == 11 and cpf.isdigit()):
-                break
-
-            else:
-                print("CPF inválido, tente novamente.")
-
-        while True:
-            telefone = input("Digite o telefone (com DDD, 9 na frente e sem espaços ou traços): ")
-
-            if (len(telefone) == 11 and telefone.isdigit()):
-                break
-
-            else:
-                print("Telefone inválido, tente novamente.")
-
-        while True:
-            try:
-                idade = int(input("Digite a idade: "))
-
-                if (idade >= 21):
-                    break
-
-                else:
-                    print("Idade suficiente para alugar um carro: ")
-
-            except ValueError:
-                print("Idade inválida, tente novamente.")
-
-        while True:
-            email = input("Digite o email: ")
-
-            if("@" in email and ".com" in email):
-                break
-
-            else:
-                print("Email inválido, tente novamente.")
-
-        while True:
-            cnh = input("Digite a CNH: ")
-
-            if(len(cnh) == 10 and cnh.isdigit()):
-                break
-
-            else:
-                print("CNH inválida, tente novamente.")
-
-        resp = input("Caso queira continuar cadastrando clientes, digite S: ").upper()
-
-        match resp:
-            case "S":
-                print("Começando novo cadastro...")
-            case _:
-                break
-
-    clie = Cliente(nome, cpf, telefone, idade, email, cnh)
-    clientes.append(clie)
-
-    print(clientes[0].get_cpf())
-
-
 
 def aluguel():
     m31 = ["01", "03", "05", "07", "08", "10", "12"]
@@ -235,11 +26,11 @@ def aluguel():
     while True:
         print("Escolha um veículo para alugar: ")
         for i in range(len(veiculos)):
-            print(f"{i} - {veiculos[i].get_marca()} {veiculos[i].get_modelo()} - DIÁRIA -> R$ {veiculos[i].get_valor()}")
+            print(f"{i} - {veiculos[i].get_marca()} {veiculos[i].get_modelo()} - DIÁRIA -> R$ {veiculos[i].get_valor()} - {veiculos[i].get_status()}")
         
         try:
             esc = int(input())
-            if (esc in range(len(veiculos))):
+            if (esc in range(len(veiculos)) and (veiculos[esc].get_status() == "Disponível")):
                 veiculo = veiculos[esc]
                 break
             else:
@@ -317,32 +108,127 @@ def aluguel():
 
     devolucao = diaD+"/"+mesD
 
-    alug = Aluguel(cliente, veiculo, retirada, devolucao)
-    alugueis.append(alug)
+    while True:
+        try:
+            km_inicial = float(input("Digite a quilometragem inicial: "))
+            if (km_inicial >= 0):
+                break
+            else:
+                print("Quilometragem inválida, tente novamente.")
 
-    alugueis[0].get_info()
+        except ValueError:
+            print("Quilometragem inválida, tente novamente.")
 
+    alug = Aluguel(cliente, veiculo, retirada, devolucao, km_inicial)
+    return alug
+
+def devolucao():
+        print("Selecione em qual aluguel deseja efetuar a devolução: ")
+        for k in range(len(alugueis)):
+            print(f"{k} - {alugueis[k].cliente.get_nome()} - {alugueis[k].veiculo.get_modelo()}")
+            try:
+                esco = int(input())
+                if (esco in range(len(alugueis))):
+                    while True:
+                        km_rodada = float(input("Digite a quilometragem que foi rodada: "))
+                        if(km_rodada >= 0):
+                            km_final = alugueis[esco].get_km_inicial() + km_rodada
+                            break
+                        else:
+                            print("Quilometragem inválida, tente novamente.")
+                    
+                    while True:
+                        atraso = int(input("Houve atraso de quantos dias? (Caso não haja atraso, digite 0): "))
+                        if (atraso >= 0):
+                            break
+                        else:
+                            print("Atraso inválido, tente novamente.")
+
+                    while True:
+                        dano = input("Houve danos ao veículo? (S/N): ").upper()
+                        match dano:
+                            case "S":
+                                multa_dano = 1000
+                                alugueis[esco].veiculo.set_manutencao()
+                                alugueis.pop(esco)
+                                break
+
+                            case "N":
+                                multa_dano = 0
+                                alugueis[esco].veiculo.set_disponivel()
+                                alugueis.pop(esco)
+                                break
+
+                            case _:
+                                print("Resposta inválida, tente novamente.")
+
+                    multa = multa_dano + (atraso*50)
+
+                    if (multa > 0):
+                        print(f"O veículo está com uma quilometragem final de {km_final} km e houve ma multa de R$ {multa}")
+
+                    else:
+                        print(f"O veículo stá com uma quilometragem final de {km_final} km")
+
+
+                else:
+                    print("Escolha inválida, tente novamente.")
+
+            except ValueError:
+                print("Escolha inválida, tente novamente.")
+
+    
 
 veiculo_teste = Veiculo("ABC-1234", "Preto", "Volkswagen", "Virtus", 2022)
 cliente_teste = Cliente("Davi", "13803015995", "48984480491", "21", "davirobergemachado@gmail.com", "1234567890")
+aluguel_teste = Aluguel(cliente_teste, veiculo_teste, "02/02", "04/02", 1000)
 
-alugueis = []
+alugueis = [aluguel_teste]
 veiculos = [veiculo_teste]
 clientes = [cliente_teste]
 
 while True:
-    print("1 - CADASTRO DE VEÍCULOS\n2 - CADASTRO DE CLIENTES\n3 - ALUGUEL\n0 - ENCERRAR PROGRAMA")
+    print("1 - CADASTRO DE VEÍCULOS\n2 - CADASTRO DE CLIENTES\n3 - ALUGUEL\n4 - DEVOLUÇÃO\n0 - ENCERRAR PROGRAMA")
     ope = input("Digite qual operação deseja fazer: ")
 
     match ope:
         case "1":
-            cadastro_veiculos()
+            veiculos.append(cadastro_veiculos())
 
         case "2":
-            cadastro_clientes()
+            clientes.append(cadastro_clientes())
 
         case "3":
-            aluguel()
+            print("1 - NOVO ALUGUEL\n2 - PAGAR ALUGUEL")
+            op2 = input("Digite qual operação deseja fazer: ")
+
+            match op2:
+                case "1":
+                    alugueis.append(aluguel())
+
+                case "2":
+                    while True:
+                        print("Selecione qual aluguel deseja pagar: ")
+                        for j in range(len(alugueis)):
+                            print(f"{j} - {alugueis[j].cliente.get_nome()} - {alugueis[j].veiculo.get_modelo()}")
+                        try:
+                            esco = int(input())
+                            if (esco in range(len(alugueis))):
+                                alugueis[esco].veiculo.set_alugado()
+                                alugueis[esco].set_pagamento()
+                                alugueis[esco].cliente.set_historico(alugueis[esco].veiculo.get_modelo(), alugueis[esco].get_retirada(), alugueis[esco].get_devolucao())
+                                alugueis[esco].get_info()
+                                break
+                            else:
+                                print("Escolha inválida, tente novamente.")
+                        except ValueError:
+                            print("Escolha inválida, tente novamente.")
+                case _:
+                    print("Operação inválida, tente novamente.")
+
+        case "4":
+            devolucao()
+
 
         case "0":
             print("Encerrando programa...")

@@ -54,6 +54,15 @@ class Veiculo():
     def get_valor(self):
         return self.valor
     
+    def set_disponivel(self):
+        self.status = "Disponível"
+    
+    def set_alugado(self):
+        self.status = "Alugado"
+
+    def set_manutencao(self):
+        self.status = "Em manutenção"
+    
 class Cliente():
     def __init__(self, nome, cpf, telefone, idade, email, cnh):
         self.nome = nome
@@ -62,6 +71,7 @@ class Cliente():
         self.idade = idade
         self.email = email
         self.cnh = cnh
+        self.historico = []
     
     def get_nome(self):
         return self.nome
@@ -81,13 +91,26 @@ class Cliente():
     def get_cnh(self):
         return self.cnh
     
+    def get_historico(self):
+        if (len(self.historico) == 0):
+            return "Vazio"
+        
+        else:
+            return self.historico
+
+    def set_historico(self, modelo, retirada, devolucao):
+        self.historico.append(f"{modelo} - {retirada} - {devolucao}")
+
+
+    
 class Aluguel():
-    def __init__(self, cliente, veiculo, retirada, devolucao):
+    def __init__(self, cliente, veiculo, retirada, devolucao, km_inicial):
         self.cliente = cliente
         self.veiculo = veiculo
         self.retirada = retirada
         self.devolucao = devolucao
-        self.pagamento = "Em espera"
+        self.km_inicial = km_inicial
+        self.pagamento = "Pendente"
 
         formato = "%d/%m"  
     
@@ -96,15 +119,25 @@ class Aluguel():
     
         self.diferenca = abs((self.devolucao2 - self.retirada2).days)
 
-        self.valor_total = self.veiculo.get_valor()*self.diferenca
+        self.valor_total = (self.veiculo.get_valor()*(self.diferenca+1))
 
     def get_info(self):
-        print(f"\nINFOS DO CLIENTE:\nNome do cliente: {self.cliente.get_nome()}\nCPF do cliente: {self.cliente.get_cpf()}\nTelefone do cliente: {self.cliente.get_telefone()}\nIdade do cliente: {self.cliente.get_idade()}\nEmail do cliente: {self.cliente.get_email()}\nCNH do cliente: {self.cliente.get_cnh()}\n\nINFOS DO VEÍCULO:\nMarca do veículo: {self.veiculo.get_marca()}\nModelo do veículo: {self.veiculo.get_modelo()}\nCor do veículo: {self.veiculo.get_cor()}\nAno de fabricação: {self.veiculo.get_ano()}\nPlaca do veículo: {self.veiculo.get_placa()}\n\nINFOS DO ALUGUEL:\nRetirada: {self.retirada}\nDevolução: {self.devolucao}\nValor total: {self.valor_total}\nStatus do pagamento: {self.pagamento}\n")
+        print(f"\nINFOS DO CLIENTE:\nNome do cliente: {self.cliente.get_nome()}\nCPF do cliente: {self.cliente.get_cpf()}\nTelefone do cliente: {self.cliente.get_telefone()}\nIdade do cliente: {self.cliente.get_idade()}\nEmail do cliente: {self.cliente.get_email()}\nCNH do cliente: {self.cliente.get_cnh()}\nHistórico do cliente: {self.cliente.get_historico()}\n\nINFOS DO VEÍCULO:\nMarca do veículo: {self.veiculo.get_marca()}\nModelo do veículo: {self.veiculo.get_modelo()}\nCor do veículo: {self.veiculo.get_cor()}\nAno de fabricação: {self.veiculo.get_ano()}\nPlaca do veículo: {self.veiculo.get_placa()}\n\nINFOS DO ALUGUEL:\nRetirada: {self.retirada}\nDevolução: {self.devolucao}\nValor total: {self.valor_total}\nStatus do pagamento: {self.pagamento}\n")
+
+    def get_km_inicial(self):
+        return self.km_inicial
+
+    def get_retirada(self):
+        return self.retirada
+    
+    def get_devolucao(self):
+        return self.devolucao
 
     def get_valor_total(self):
         return self.valor_total
 
-    
+    def set_pagamento(self):
+        self.pagamento = "Pago"
     
 
     
