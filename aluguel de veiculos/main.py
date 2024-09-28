@@ -1,17 +1,17 @@
-from classes import Veiculo, Cliente
+from classes import Veiculo, Cliente, Aluguel
 import re
 
 def cadastro_veiculos():
 
     cores = ["Branco", "Cinza", "Prata", "Preto", "Vermelho", "Azul"]
-    marcas = ["Fiat", "Ford", "Volkswagen", "Audi", "Chevrolet", "Peugeot", "Citroen"]
-    fiatM = ["Strada", "Cronos", "Argo", "Mobi", "Uno", "Toro"]
+    marcas = ["Fiat", "Ford", "Volkswagen", "Chevrolet", "Peugeot", "Citroen"]
+    fiatM = ["Strada", "Cronos", "Argo", "Mobi", "Uno"]
     fordM = ["Ka", "EcoSport"]
     volksM = ["Gol", "Polo", "Virtus", "Nivus", "Taos"]
     chevroM = ["Cobalt", "Onix", "Spin", "Cruze"]
     peugeotM = ["208", "2008"]
-    citroenM = ["C3", "C4 Cactus", "Aircross"]
-    audiM = ["A3", "A4", "A5"]
+    citroenM = ["C3", "C4 Cactus"]
+
     placa_padrao = r'^[A-Z]{3}-\d{4}$'
 
     while True:
@@ -84,16 +84,6 @@ def cadastro_veiculos():
                     else:
                         print("Modelo inválido, tente novamente.")
 
-            case "Audi":
-                while True:
-                    print("Modelos disponíveis: ")
-                    print(*audiM)
-                    modelo = input("Digite o modelo do carro: ")
-                    if (modelo in audiM):
-                        break
-                    else:
-                        print("Modelo inválido, tente novamente.")
-
             case "Chevrolet":
                 while True:
                     print("Modelos disponíveis: ")
@@ -137,23 +127,6 @@ def cadastro_veiculos():
 
         print(ano)
 
-        while True:
-            status = input("Digite se o carro está (D)isponível, (A)lugado ou em (M)anutenção: ").upper()
-
-            match status:
-                case "D":
-                    break
-
-                case "A":
-                    break
-
-                case "M":
-                    break
-
-                case _:
-                    print("Status inválido, tente novamente.")
-
-        print(status)
         resp = input("Caso queira continuar cadastrando veículos, digite S: ").upper()
 
         match resp:
@@ -162,7 +135,7 @@ def cadastro_veiculos():
             case _:
                 break
 
-    veic = Veiculo(placa, cor, marca, modelo, ano, status)
+    veic = Veiculo(placa, cor, marca, modelo, ano)
     veiculos.append(veic)
 
     print(veiculos[0].get_modelo())
@@ -171,12 +144,12 @@ def cadastro_clientes():
     while True:
         print("=== CADASTRO DE CLIENTES ===")
 
-        nome = input("Digite o seu nome: ")
+        nome = input("Digite o nome: ")
 
         print(nome)
 
         while True:
-            cpf = input("Digite seu CPF (sem pontos ou traços): ")
+            cpf = input("Digite o CPF (sem pontos ou traços): ")
 
             if (len(cpf) == 11 and cpf.isdigit()):
                 break
@@ -185,7 +158,7 @@ def cadastro_clientes():
                 print("CPF inválido, tente novamente.")
 
         while True:
-            telefone = input("Digite seu telefone (com DDD, 9 na frente e sem espaços ou traços): ")
+            telefone = input("Digite o telefone (com DDD, 9 na frente e sem espaços ou traços): ")
 
             if (len(telefone) == 11 and telefone.isdigit()):
                 break
@@ -195,19 +168,19 @@ def cadastro_clientes():
 
         while True:
             try:
-                idade = int(input("Digite sua idade: "))
+                idade = int(input("Digite a idade: "))
 
                 if (idade >= 21):
                     break
 
                 else:
-                    print("Você não tem idade suficiente para alugar um carro: ")
+                    print("Idade suficiente para alugar um carro: ")
 
             except ValueError:
                 print("Idade inválida, tente novamente.")
 
         while True:
-            email = input("Digite seu email: ")
+            email = input("Digite o email: ")
 
             if("@" in email and ".com" in email):
                 break
@@ -216,7 +189,7 @@ def cadastro_clientes():
                 print("Email inválido, tente novamente.")
 
         while True:
-            cnh = input("Digite sua CNH: ")
+            cnh = input("Digite a CNH: ")
 
             if(len(cnh) == 10 and cnh.isdigit()):
                 break
@@ -237,11 +210,112 @@ def cadastro_clientes():
 
     print(clientes[0].get_cpf())
 
-veiculos = []
-clientes = []
+
+
+def aluguel():
+    m31 = ["01", "03", "05", "07", "08", "10", "12"]
+    m30 = ["04", "06", "09", "11"]
+    print("=== ALUGUEL ===")
+    while True:
+        print("Escolha um veículo para alugar: ")
+        for i in range(len(veiculos)):
+            print(f"{i} - {veiculos[i].get_marca()} {veiculos[i].get_modelo()} - DIÁRIA -> R$ {veiculos[i].get_valor()}")
+        
+        try:
+            esc = int(input())
+            if (esc in range(len(veiculos))):
+                veiculo = veiculos[esc]
+                break
+            else:
+                print("Escolha inválida, tente novamente.")
+        except ValueError:
+            print("Escolha inválida, tente novamente.")
+
+    while True:
+        mesR = input("Digite o mês que acontecerá a retirada (usando dois digitos, ex: 01): ")
+
+        if (mesR in m31) :
+            while True:
+                diaR = input("Digite o dia que acontecerá a retirada (usando dois digitos, ex: 01): ")
+                if(len(diaR) == 2 and (1 <= int(diaR) <= 31)):
+                    break
+                else:
+                    print("Dia inválido, tente novamente.")
+            break
+
+        elif (mesR in m30):
+            while True:
+                diaR = input("Digite o dia que acontecerá a retirada (usando dois digitos, ex: 01): ")
+                if(len(diaR) == 2 and (1 <= int(diaR) <= 30)):
+                    break
+                else:
+                    print("Dia inválido, tente novamente.")
+            break
+
+        elif (mesR == "02"):
+            while True:
+                diaR = input("Digite o dia que acontecerá a retirada (usando dois digitos, ex: 01): ")
+                if(len(diaR) == 2 and (1 <= int(diaR) <= 28)):
+                    break
+                else:
+                    print("Dia inválido, tente novamente.")
+            break
+
+        else:
+            print("Mês inválido, tente novamente.")
+
+    retirada = diaR+"/"+mesR
+
+    while True:
+        mesD = input("Digite o mês que acontecerá a devolução (usando dois digitos, ex: 01): ")
+
+        if (mesD in m31) :
+            while True:
+                diaD = input("Digite o dia que acontecerá a devolução (usando dois digitos, ex: 01): ")
+                if(len(diaD) == 2 and (1 <= int(diaD) <= 31)):
+                    break
+                else:
+                    print("Dia inválido, tente novamente.")
+            break
+
+        elif (mesD in m30):
+            while True:
+                diaD = input("Digite o dia que acontecerá a devolução (usando dois digitos, ex: 01): ")
+                if(len(diaD) == 2 and (1 <= int(diaD) <= 30)):
+                    break
+                else:
+                    print("Dia inválido, tente novamente.")
+            break
+
+        elif (mesD == "02"):
+            while True:
+                diaD = input("Digite o dia que acontecerá a devolução (usando dois digitos, ex: 01): ")
+                if(len(diaD) == 2 and (1 <= int(diaD) <= 28)):
+                    break
+                else:
+                    print("Dia inválido, tente novamente.")
+            break
+
+        else:
+            print("Mês inválido, tente novamente.")
+
+    devolucao = diaD+"/"+mesD
+
+    alug = Aluguel(veiculo, retirada, devolucao)
+    alugueis.append(alug)
+
+    alugueis[0].get_info()
+
+
+veiculo_teste = Veiculo("ABC-1234", "Preto", "Volkswagen", "Virtus", 2022)
+cliente_teste = Cliente("Davi", "13803015995", "48984480491", "21", "davirobergemachado@gmail.com", "1234567890")
+
+alugueis = []
+veiculos = [veiculo_teste]
+clientes = [cliente_teste]
 
 while True:
-    print("1 - CADASTRO DE VEÍCULOS\n2 - CADASTRO DE CLIENTES\n0 - ENCERRAR PROGRAMA")
+    print("1 - CADASTRO DE VEÍCULOS\n2 - CADASTRO DE CLIENTES\n3 - ALUGUEL\n0 - ENCERRAR PROGRAMA")
     ope = input("Digite qual operação deseja fazer: ")
 
     match ope:
@@ -250,6 +324,9 @@ while True:
 
         case "2":
             cadastro_clientes()
+
+        case "3":
+            aluguel()
 
         case "0":
             print("Encerrando programa...")
