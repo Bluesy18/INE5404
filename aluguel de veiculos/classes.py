@@ -82,7 +82,8 @@ class Cliente():
         return self.cnh
     
 class Aluguel():
-    def __init__(self, veiculo, retirada, devolucao):
+    def __init__(self, cliente, veiculo, retirada, devolucao):
+        self.cliente = cliente
         self.veiculo = veiculo
         self.retirada = retirada
         self.devolucao = devolucao
@@ -98,7 +99,7 @@ class Aluguel():
         self.valor_total = self.veiculo.get_valor()*self.diferenca
 
     def get_info(self):
-        print(f"\nMarca do veículo: {self.veiculo.get_marca()}\nModelo do veículo: {self.veiculo.get_modelo()}\nCor do veículo: {self.veiculo.get_cor()}\nAno de fabricação: {self.veiculo.get_ano()}\nPlaca do veículo: {self.veiculo.get_placa()}\n\nRetirada: {self.retirada}\nDevolução: {self.devolucao}\nValor total: {self.valor_total}\nStatus do pagamento: {self.pagamento}\n")
+        print(f"\nINFOS DO CLIENTE:\nNome do cliente: {self.cliente.get_nome()}\nCPF do cliente: {self.cliente.get_cpf()}\nTelefone do cliente: {self.cliente.get_telefone()}\nIdade do cliente: {self.cliente.get_idade()}\nEmail do cliente: {self.cliente.get_email()}\nCNH do cliente: {self.cliente.get_cnh()}\n\nINFOS DO VEÍCULO:\nMarca do veículo: {self.veiculo.get_marca()}\nModelo do veículo: {self.veiculo.get_modelo()}\nCor do veículo: {self.veiculo.get_cor()}\nAno de fabricação: {self.veiculo.get_ano()}\nPlaca do veículo: {self.veiculo.get_placa()}\n\nINFOS DO ALUGUEL:\nRetirada: {self.retirada}\nDevolução: {self.devolucao}\nValor total: {self.valor_total}\nStatus do pagamento: {self.pagamento}\n")
 
     def get_valor_total(self):
         return self.valor_total

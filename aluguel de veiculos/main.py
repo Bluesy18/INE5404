@@ -216,6 +216,22 @@ def aluguel():
     m31 = ["01", "03", "05", "07", "08", "10", "12"]
     m30 = ["04", "06", "09", "11"]
     print("=== ALUGUEL ===")
+
+    while True:
+        print("Escolha o cliente que irá alugar: ")
+        for i in range(len(clientes)):
+            print(f"{i} - NOME: {clientes[i].get_nome()} - CPF: {clientes[i].get_cpf()}")
+        
+        try:
+            esc = int(input())
+            if (esc in range(len(clientes))):
+                cliente = clientes[esc]
+                break
+            else:
+                print("Escolha inválida, tente novamente.")
+        except ValueError:
+            print("Escolha inválida, tente novamente.")
+
     while True:
         print("Escolha um veículo para alugar: ")
         for i in range(len(veiculos)):
@@ -301,7 +317,7 @@ def aluguel():
 
     devolucao = diaD+"/"+mesD
 
-    alug = Aluguel(veiculo, retirada, devolucao)
+    alug = Aluguel(cliente, veiculo, retirada, devolucao)
     alugueis.append(alug)
 
     alugueis[0].get_info()
