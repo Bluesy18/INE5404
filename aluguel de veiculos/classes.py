@@ -54,6 +54,9 @@ class Veiculo():
     def get_valor(self):
         return self.valor
     
+    def get_info(self):
+        print(f"\nINFOS DO VEÍCULO:\nMarca do veículo: {self.get_marca()}\nModelo do veículo: {self.get_modelo()}\nCor do veículo: {self.get_cor()}\nAno de fabricação: {self.get_ano()}\nPlaca do veículo: {self.get_placa()}\n")
+    
     def set_disponivel(self):
         self.status = "Disponível"
     
@@ -97,6 +100,9 @@ class Cliente():
         
         else:
             return self.historico
+        
+    def get_info(self):
+        print(f"\nINFOS DO CLIENTE:\nNome do cliente: {self.get_nome()}\nCPF do cliente: {self.get_cpf()}\nTelefone do cliente: {self.get_telefone()}\nIdade do cliente: {self.get_idade()}\nEmail do cliente: {self.get_email()}\nCNH do cliente: {self.get_cnh()}\nHistórico do cliente: {self.get_historico()}\n")
 
     def set_historico(self, modelo, retirada, devolucao):
         self.historico.append(f"{modelo} - {retirada} - {devolucao}")
@@ -138,6 +144,32 @@ class Aluguel():
 
     def set_pagamento(self):
         self.pagamento = "Pago"
+
+class SistemaAluguel:
+    def __init__(self, clientes, veiculos, alugueis):
+        self.receita = 0
+        self.clientes = clientes
+        self.veiculos = veiculos
+        self.alugueis = alugueis
+
+    def append_clientes(self, cliente):
+        self.clientes.append(cliente)
+
+    def append_veiculos(self, veiculo):
+        self.veiculos.append(veiculo)
+
+    def append_alugueis(self, aluguel):
+        self.alugueis.append(aluguel)    
+
+    def get_receita(self):
+        return self.receita
+    
+    def set_receita(self, receita):
+        self.receita += receita
+
+    
+
+    
     
 
     
