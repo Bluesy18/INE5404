@@ -14,9 +14,9 @@ def cadastro_veiculos():
 
     placa_padrao = r'^[A-Z]{3}-\d{4}$'
 
+
+    print("=== CADASTRO DE CARROS ===")
     while True:
-        print("=== CADASTRO DE CARROS ===")
-        while True:
 
             placa = input("Digite a placa do carro: ")
 
@@ -26,9 +26,9 @@ def cadastro_veiculos():
             else:
                 print("Placa inválida, tente novamente.")
 
-        print(placa)
+            print(placa)
 
-        while True:
+    while True:
             print("Cores disponíveis: ")
             print(*cores)
             cor = input("Digite a cor do carro: ")
@@ -39,9 +39,7 @@ def cadastro_veiculos():
             else:
                 print("Cor inválida, tente novamente")
 
-        print(cor)
-
-        while True:
+    while True:
             print("Marcas disponíveis: ")
             print(*marcas)
             marca = input("Digite a marca do carro: ")
@@ -52,7 +50,7 @@ def cadastro_veiculos():
             else:
                 print("Marca inválida, tente novamente.")
 
-        match marca:
+    match marca:
             
             case "Fiat":
                 while True:
@@ -114,9 +112,11 @@ def cadastro_veiculos():
                     else:
                         print("Modelo inválido, tente novamente.")
 
-        print(modelo)
+            case _:
+                print("Marca inválida, tente novamente.")
 
-        while True:
+
+    while True:
             ano = int(input("Digite o ano de fabricação do carro (mínimo 2019): "))
 
             if (ano >= 2019):
@@ -124,16 +124,6 @@ def cadastro_veiculos():
 
             else:
                 print("Ano inválido, tente novamente.")
-
-        print(ano)
-
-        resp = input("Caso queira continuar cadastrando veículos, digite S: ").upper()
-
-        match resp:
-            case "S":
-                print("Começando novo cadastro...")
-            case _:
-                break
 
     veic = Veiculo(placa, cor, marca, modelo, ano)
     return veic

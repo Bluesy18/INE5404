@@ -1,5 +1,5 @@
 from classes import Veiculo, Cliente, Aluguel, SistemaAluguel
-from cadastro_veiculuos import cadastro_veiculos
+from cadastro_veiculos import cadastro_veiculos
 from cadastro_clientes import cadastro_clientes
 
 def aluguel():
