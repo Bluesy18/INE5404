@@ -26,8 +26,6 @@ def cadastro_veiculos():
             else:
                 print("Placa inválida, tente novamente.")
 
-            print(placa)
-
     while True:
             print("Cores disponíveis: ")
             print(*cores)

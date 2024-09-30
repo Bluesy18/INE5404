@@ -33,6 +33,9 @@ class Veiculo():
         if(self.modelo == "Cruze"):
             self.valor = 480
 
+    def __str__(self):
+        return f"\nINFOS DO VEÍCULO:\nMarca do veículo: {self.get_marca()}\nModelo do veículo: {self.get_modelo()}\nCor do veículo: {self.get_cor()}\nAno de fabricação: {self.get_ano()}\nPlaca do veículo: {self.get_placa()}\n"
+
     def get_placa(self):
         return self.placa
     
@@ -54,9 +57,6 @@ class Veiculo():
     def get_valor(self):
         return self.valor
     
-    def get_info(self):
-        print(f"\nINFOS DO VEÍCULO:\nMarca do veículo: {self.get_marca()}\nModelo do veículo: {self.get_modelo()}\nCor do veículo: {self.get_cor()}\nAno de fabricação: {self.get_ano()}\nPlaca do veículo: {self.get_placa()}\n")
-    
     def set_disponivel(self):
         self.status = "Disponível"
     
@@ -75,7 +75,10 @@ class Cliente():
         self.email = email
         self.cnh = cnh
         self.historico = []
-    
+
+    def __str__(self):
+        return f"\nINFOS DO CLIENTE:\nNome do cliente: {self.get_nome()}\nCPF do cliente: {self.get_cpf()}\nTelefone do cliente: {self.get_telefone()}\nIdade do cliente: {self.get_idade()}\nEmail do cliente: {self.get_email()}\nCNH do cliente: {self.get_cnh()}\nHistórico do cliente: {self.get_historico()}\n"
+
     def get_nome(self):
         return self.nome
     
@@ -97,18 +100,11 @@ class Cliente():
     def get_historico(self):
         if (len(self.historico) == 0):
             return "Vazio"
-        
-        else:
-            return self.historico
-        
-    def get_info(self):
-        print(f"\nINFOS DO CLIENTE:\nNome do cliente: {self.get_nome()}\nCPF do cliente: {self.get_cpf()}\nTelefone do cliente: {self.get_telefone()}\nIdade do cliente: {self.get_idade()}\nEmail do cliente: {self.get_email()}\nCNH do cliente: {self.get_cnh()}\nHistórico do cliente: {self.get_historico()}\n")
+        return self.historico
 
     def set_historico(self, modelo, retirada, devolucao):
         self.historico.append(f"{modelo} - {retirada} - {devolucao}")
-
-
-    
+  
 class Aluguel():
     def __init__(self, cliente, veiculo, retirada, devolucao, km_inicial):
         self.cliente = cliente
@@ -127,8 +123,8 @@ class Aluguel():
 
         self.valor_total = (self.veiculo.get_valor()*(self.diferenca+1))
 
-    def get_info(self):
-        print(f"\nINFOS DO CLIENTE:\nNome do cliente: {self.cliente.get_nome()}\nCPF do cliente: {self.cliente.get_cpf()}\nTelefone do cliente: {self.cliente.get_telefone()}\nIdade do cliente: {self.cliente.get_idade()}\nEmail do cliente: {self.cliente.get_email()}\nCNH do cliente: {self.cliente.get_cnh()}\nHistórico do cliente: {self.cliente.get_historico()}\n\nINFOS DO VEÍCULO:\nMarca do veículo: {self.veiculo.get_marca()}\nModelo do veículo: {self.veiculo.get_modelo()}\nCor do veículo: {self.veiculo.get_cor()}\nAno de fabricação: {self.veiculo.get_ano()}\nPlaca do veículo: {self.veiculo.get_placa()}\n\nINFOS DO ALUGUEL:\nRetirada: {self.retirada}\nDevolução: {self.devolucao}\nValor total: {self.valor_total}\nStatus do pagamento: {self.pagamento}\n")
+    def __str__(self):
+        return f"\nINFOS DO CLIENTE:\nNome do cliente: {self.cliente.get_nome()}\nCPF do cliente: {self.cliente.get_cpf()}\nTelefone do cliente: {self.cliente.get_telefone()}\nIdade do cliente: {self.cliente.get_idade()}\nEmail do cliente: {self.cliente.get_email()}\nCNH do cliente: {self.cliente.get_cnh()}\nHistórico do cliente: {self.cliente.get_historico()}\n\nINFOS DO VEÍCULO:\nMarca do veículo: {self.veiculo.get_marca()}\nModelo do veículo: {self.veiculo.get_modelo()}\nCor do veículo: {self.veiculo.get_cor()}\nAno de fabricação: {self.veiculo.get_ano()}\nPlaca do veículo: {self.veiculo.get_placa()}\n\nINFOS DO ALUGUEL:\nRetirada: {self.retirada}\nDevolução: {self.devolucao}\nValor total: {self.valor_total}\nStatus do pagamento: {self.pagamento}\n"
 
     def get_km_inicial(self):
         return self.km_inicial
@@ -141,6 +137,9 @@ class Aluguel():
 
     def get_valor_total(self):
         return self.valor_total
+    
+    def get_pagamento(self):
+        return self.pagamento
 
     def set_pagamento(self):
         self.pagamento = "Pago"

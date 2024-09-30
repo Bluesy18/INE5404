@@ -32,6 +32,10 @@ def aluguel():
             if (esc in range(len(sys.veiculos)) and (sys.veiculos[esc].get_status() == "Disponível")):
                 veiculo = sys.veiculos[esc]
                 break
+            elif(sys.veiculos[esc].get_status() == "Alugado"):
+                print("Veículo alugado.")
+                return None
+            
             elif(sys.veiculos[esc].get_status() == "Em manutenção"):
                 print("Veículo em manutenção.")
                 return None
@@ -125,8 +129,6 @@ def aluguel():
     return alug
 
 def devolucao():
-        
-
         if (len(sys.alugueis) == 0):
             print("Não existem alugueis ativos.")
 
@@ -134,57 +136,60 @@ def devolucao():
             print("Selecione em qual aluguel deseja efetuar a devolução: ")
             for k in range(len(sys.alugueis)):
                 print(f"{k} - {sys.alugueis[k].cliente.get_nome()} - {sys.alugueis[k].veiculo.get_modelo()}")
-                try:
-                    esco = int(input())
-                    if (esco in range(len(sys.alugueis))):
-                        while True:
-                            km_rodada = float(input("Digite a quilometragem que foi rodada: "))
-                            if(km_rodada >= 0):
-                                km_final = sys.alugueis[esco].get_km_inicial() + km_rodada
-                                break
-                            else:
-                                print("Quilometragem inválida, tente novamente.")
-                        
-                        while True:
-                            atraso = int(input("Houve atraso de quantos dias? (Caso não haja atraso, digite 0): "))
-                            if (atraso >= 0):
-                                break
-                            else:
-                                print("Atraso inválido, tente novamente.")
-
-                        while True:
-                            dano = input("Houve danos ao veículo? (S/N): ").upper()
-                            match dano:
-                                case "S":
-                                    multa_dano = 1000
-                                    sys.alugueis[esco].veiculo.set_manutencao()
-                                    sys.alugueis.pop(esco)
-                                    break
-
-                                case "N":
-                                    multa_dano = 0
-                                    sys.alugueis[esco].veiculo.set_disponivel()
-                                    sys.alugueis.pop(esco)
-                                    break
-
-                                case _:
-                                    print("Resposta inválida, tente novamente.")
-
-                        multa = multa_dano + (atraso*50)
-
-                        if (multa > 0):
-                            sys.set_receita(multa)
-                            print(f"O veículo está com uma quilometragem final de {km_final} km e houve ma multa de R$ {multa}")
-
+            try:
+                esco = int(input())
+                if (esco in range(len(sys.alugueis))):
+                    while True:
+                        km_rodada = float(input("Digite a quilometragem que foi rodada: "))
+                        if(km_rodada >= 0):
+                            km_final = sys.alugueis[esco].get_km_inicial() + km_rodada
+                            break
                         else:
-                            print(f"O veículo stá com uma quilometragem final de {km_final} km")
+                            print("Quilometragem inválida, tente novamente.")
+                    
+                    while True:
+                        atraso = int(input("Houve atraso de quantos dias? (Caso não haja atraso, digite 0): "))
+                        if (atraso >= 0):
+                            break
+                        else:
+                            print("Atraso inválido, tente novamente.")
 
+                    while True:
+                        dano = input("Houve danos ao veículo? (S/N): ").upper()
+                        match dano:
+                            case "S":
+                                multa_dano = 1000
+                                sys.alugueis[esco].veiculo.set_manutencao()
+                                sys.alugueis.pop(esco)
+                                for _ in sys.alugueis:
+                                    print(_)
+                                break
+
+                            case "N":
+                                multa_dano = 0
+                                sys.alugueis[esco].veiculo.set_disponivel()
+                                sys.alugueis.pop(esco)
+                                for _ in sys.alugueis:
+                                    print(_)
+                                break
+
+                            case _:
+                                print("Resposta inválida, tente novamente.")
+
+                    multa = multa_dano + (atraso*200)
+
+                    if (multa > 0):
+                        sys.set_receita(multa)
+                        print(f"O veículo está com uma quilometragem final de {km_final} km e houve ma multa de R$ {multa}")
 
                     else:
-                        print("Escolha inválida, tente novamente.")
+                        print(f"O veículo está com uma quilometragem final de {km_final} km")
 
-                except ValueError:
+                else:
                     print("Escolha inválida, tente novamente.")
+
+            except ValueError:
+                print("Escolha inválida, tente novamente.")
 
 def frota():
     print("Selecione um veículo: ")
@@ -206,21 +211,20 @@ def frota():
     while True:
         match opera:
             case "1":
-                veiculo.get_info()
+                print(veiculo)
                 break
 
             case "2":
                 if(veiculo.get_status() == "Disponível"):
                     veiculo.set_manutencao()
-                    break
-                
+                    
                 elif(veiculo.get_status() == "Em manutenção"):
                     veiculo.set_disponivel()
-                    break
                 
                 else:
                     print("O veículo está alugado e não pode ser mandado para manutenção.")
-                    break
+                    
+                break
 
             case _:
                 print("Operação inválida, tente novamente.")
@@ -241,13 +245,38 @@ def con_clientes():
         except ValueError:
             print("Escolha inválida, tente novamente.")
 
-    cliente.get_info()
+    print(cliente)
+
+def pagar():
+    while True:
+        if(len(sys.alugueis) == 0):
+            print("Não existem alugueis ativos.")
+            break
+        else:
+            print("Selecione qual aluguel deseja pagar: ")
+            for j in range(len(sys.alugueis)):
+                print(f"{j} - {sys.alugueis[j].cliente.get_nome()} - {sys.alugueis[j].veiculo.get_modelo()}")
+            try:
+                esco = int(input())
+                if (esco in range(len(sys.alugueis)) and (sys.alugueis[esco].get_pagamento() == "Pendente")):
+                    sys.alugueis[esco].veiculo.set_alugado()
+                    sys.alugueis[esco].set_pagamento()
+                    sys.alugueis[esco].cliente.set_historico(sys.alugueis[esco].veiculo.get_modelo(), sys.alugueis[esco].get_retirada(), sys.alugueis[esco].get_devolucao())
+                    print(sys.alugueis[esco])
+                    sys.set_receita(sys.alugueis[esco].get_valor_total())
+                    break
+                elif (sys.alugueis[esco].get_pagamento() == "Pago"):
+                    print("Aluguel já foi pago.")
+                    break
+                else:
+                    print("Escolha inválida, tente novamente.")
+            except ValueError:
+                print("Escolha inválida, tente novamente.")
 
 
 veiculo_teste = Veiculo("ABC-1234", "Preto", "Volkswagen", "Virtus", 2022)
 cliente_teste = Cliente("Davi", "13803015995", "48984480491", "21", "davirobergemachado@gmail.com", "1234567890")
 aluguel_teste = Aluguel(cliente_teste, veiculo_teste, "02/02", "04/02", 1000)
-cliente_teste.set_historico(veiculo_teste.get_modelo(), "02/02", "04/02")
 
 alugueis = [aluguel_teste]
 veiculos = [veiculo_teste]
@@ -278,24 +307,9 @@ while True:
                     while True:
                         if(len(sys.alugueis) == 0):
                             print("Não existem alugueis ativos.")
-                            break
                         else:
-                            print("Selecione qual aluguel deseja pagar: ")
-                            for j in range(len(sys.alugueis)):
-                                print(f"{j} - {sys.alugueis[j].cliente.get_nome()} - {sys.alugueis[j].veiculo.get_modelo()}")
-                            try:
-                                esco = int(input())
-                                if (esco in range(len(sys.alugueis))):
-                                    sys.alugueis[esco].veiculo.set_alugado()
-                                    sys.alugueis[esco].set_pagamento()
-                                    sys.alugueis[esco].cliente.set_historico(sys.alugueis[esco].veiculo.get_modelo(), sys.alugueis[esco].get_retirada(), sys.alugueis[esco].get_devolucao())
-                                    sys.alugueis[esco].get_info()
-                                    sys.set_receita(sys.alugueis[esco].get_valor_total())
-                                    break
-                                else:
-                                    print("Escolha inválida, tente novamente.")
-                            except ValueError:
-                                print("Escolha inválida, tente novamente.")
+                            pagar()
+                        break
                 case _:
                     print("Operação inválida, tente novamente.")
 
@@ -309,7 +323,7 @@ while True:
             con_clientes()
 
         case "7":
-            print(sys.get_receita())
+            print(f"R$ {sys.get_receita()}")
 
         case "0":
             print("Encerrando programa...")
