@@ -115,13 +115,17 @@ def cadastro_veiculos():
 
 
     while True:
-            ano = int(input("Digite o ano de fabricação do carro (mínimo 2019): "))
+            
+            try:
+                ano = int(input("Digite o ano de fabricação do carro (mínimo 2019): "))
 
-            if (ano >= 2019):
-                break
+                if (ano >= 2019):
+                    break
 
-            else:
-                print("Ano inválido, tente novamente.")
+                else:
+                    print("Ano inválido, tente novamente.")
+            except ValueError:
+                 print("Ano inválido, tente novamente.") 
 
     veic = Veiculo(placa, cor, marca, modelo, ano)
     return veic
