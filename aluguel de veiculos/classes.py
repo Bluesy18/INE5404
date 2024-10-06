@@ -34,7 +34,7 @@ class Veiculo():
             self.valor = 480
 
     def __str__(self):
-        return f"\nINFOS DO VEÍCULO:\nMarca do veículo: {self.get_marca()}\nModelo do veículo: {self.get_modelo()}\nCor do veículo: {self.get_cor()}\nAno de fabricação: {self.get_ano()}\nPlaca do veículo: {self.get_placa()}\n"
+        return f"\nINFOS DO VEÍCULO:\nMarca do veículo: {self.get_marca()}\nModelo do veículo: {self.get_modelo()}\nCor do veículo: {self.get_cor()}\nAno de fabricação: {self.get_ano()}\nPlaca do veículo: {self.get_placa()}\nStatus: {self.get_status()}\n"
 
     def get_placa(self):
         return self.placa
