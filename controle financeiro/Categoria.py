@@ -1,8 +1,10 @@
+import math
+
 class Categoria():
-  
-  def __init__(self, nome, limite):
+
+  def __init__(self, nome):
     self.nome = nome
-    self.limite = limite
+    self.limite = math.inf
     self.despesas = []
 
   def get_nome(self):
@@ -13,3 +15,6 @@ class Categoria():
   
   def get_despesas(self):
     return self.despesas
+  
+  def set_limite(self, limite):
+    self.limite = limite
