@@ -4,7 +4,9 @@ from ControleFinanceiro import ControleFinanceiro
 from Usuario import Usuario
 from cadastro_de_usuario import cadastro_de_usuario
 from alterar_limites import alterar_limites
+from cadastro_de_despesas import cadastro_de_despesas
 import math
+from datetime import datetime
 
 educacao = Categoria("Educação")
 energia = Categoria("Energia")
@@ -33,13 +35,16 @@ while True:
   
   first = False
 
-  print("DIGITE A OPERAÇÃO QUE DESEJA REALIZAR:\n1 - ALTERAR LIMITES\n0 - ENCERRAR SISTEMA")
+  print("DIGITE A OPERAÇÃO QUE DESEJA REALIZAR:\n1 - ALTERAR LIMITES\n2 - CADASTRAR DESPESAS\n0 - ENCERRAR SISTEMA")
   op = input()
 
   match op:
     
     case "1":
       alterar_limites(controle)
+
+    case "2":
+      cadastro_de_despesas(controle)
 
     case "0":
       print("Encerrando sistema...")

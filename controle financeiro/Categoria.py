@@ -18,3 +18,6 @@ class Categoria():
   
   def set_limite(self, limite):
     self.limite = limite
+
+  def append_despesas(self, despesa):
+    self.despesas.append(despesa)
