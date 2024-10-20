@@ -26,8 +26,8 @@ def cadastro_de_despesas(controle):
 
   categ_selecionada = controle.get_categorias()[list(controle.get_categorias().keys())[categ]]
 
-  try:
-    while True:
+  while True:
+    try:
       valor = float(input("Digite o valor da despesa: "))
       
       if (valor <= 0):
@@ -36,8 +36,8 @@ def cadastro_de_despesas(controle):
       else:
         break
 
-  except ValueError:
-    print("Valor inválido, tente novamente.")
+    except ValueError:
+      print("Valor inválido, tente novamente.")
 
   while True:
     try:
@@ -48,7 +48,10 @@ def cadastro_de_despesas(controle):
     except ValueError:
       print("Data inválida, tente novamente.") 
   
-  mes = data1.month
+  mes = str(data1.month)
+  ano = str(data1.year)
+
+  mes_ano = mes + '/' + ano
 
   descricao = input("Digite uma breve descrição da despesa: ")
 
@@ -56,8 +59,8 @@ def cadastro_de_despesas(controle):
 
   categ_selecionada.append_despesas(despesa)
 
-  if (mes in controle.get_meses().keys()):
-    controle.append_meses(mes, despesa)
+  if (mes_ano in controle.get_meses().keys()):
+    controle.append_meses(mes_ano, despesa)
 
   else:
-    controle.create_mes(mes, despesa)
+    controle.create_mes(mes_ano, despesa)

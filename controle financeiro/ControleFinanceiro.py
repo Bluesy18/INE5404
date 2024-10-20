@@ -9,9 +9,9 @@ class ControleFinanceiro():
   def get_meses(self):
     return self.meses
 
-  def append_meses(self, mes, despesa):
-    self.meses[mes].append(despesa)
+  def append_meses(self, mes_ano, despesa):
+    self.meses[mes_ano].append(despesa)
 
-  def create_mes(self, mes, despesa):
-    self.meses[mes] = [despesa]
+  def create_mes(self, mes_ano, despesa):
+    self.meses[mes_ano] = [despesa]
     
