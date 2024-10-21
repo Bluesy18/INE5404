@@ -55,12 +55,14 @@ def cadastro_de_despesas(controle):
 
   descricao = input("Digite uma breve descrição da despesa: ")
 
+  data1 = data1.strftime("%d/%m/%Y")
+
   despesa = Despesa(valor, categ_selecionada.get_nome(), data1, descricao)
 
   categ_selecionada.append_despesas(despesa)
 
   if (mes_ano in controle.get_meses().keys()):
-    controle.append_meses(mes_ano, despesa)
+    controle.append_meses(mes_ano, categ_selecionada)
 
   else:
-    controle.create_mes(mes_ano, despesa)
+    controle.create_mes(mes_ano, categ_selecionada)

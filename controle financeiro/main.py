@@ -76,8 +76,9 @@ while True:
       col_widths2 = [50, 50, 90]
       pdf = PDF()
       for g in list(controle.get_meses().values()):
-        for l in g:
-          despesa_unica.append([l.get_categoria(), l.get_valor(), l.get_data(), l.get_descricao()])    
+        for h in g:
+          for l in h.get_despesas():
+            despesa_unica.append([l.get_categoria(), l.get_valor(), l.get_data(), l.get_descricao()])    
       for i, k in controle.get_categorias().items():
         despesa_categoria.append([f"{i}", f"{k.despesas_total()}"])
       pdf.add_page()

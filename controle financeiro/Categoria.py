@@ -7,13 +7,6 @@ class Categoria():
     self.limite = math.inf
     self.despesas = []
 
-  def despesas_total(self):
-    self.total = 0
-    for _ in self.despesas:
-      self.total += _.get_valor()
-
-    return self.total
-
   def get_nome(self):
     return self.nome
   

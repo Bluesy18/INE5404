@@ -6,7 +6,6 @@ def data_relatório(controle):
   else:
     print("Selecione o mês no qual você deseja fazer o relatório: ")
     keys = list(controle.get_meses().keys())
-    print(keys)
     for i in keys:
       print(f"{keys.index(i)} - {i}")
 
