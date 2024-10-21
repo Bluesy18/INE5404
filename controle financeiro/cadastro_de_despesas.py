@@ -1,10 +1,38 @@
 from datetime import datetime
 from Despesa import Despesa
+from Mes import Mes
+from redefine_controle import redefine_controle
 
-def cadastro_de_despesas(controle):
+def cadastro_de_despesas(lista_meses):
+  repetido = False
+
+  while True:
+    try:
+      data0 = input("Digite a data dessa despesa (DD/MM/AAAA): ")
+      data1 = datetime.strptime(data0, "%d/%m/%Y")
+      break
+
+    except ValueError:
+      print("Data inválida, tente novamente.") 
+  
+  mes = str(data1.month)
+  ano = str(data1.year)
+
+  mes_ano = mes + '/' + ano
+
+  if (len(lista_meses) != 0):
+    for i in lista_meses:
+      if (mes_ano == i.get_mes_ano()):
+        controle = i.get_mes_controle()
+        repetido = True
+        break
+      controle = redefine_controle()
+  else:
+    controle = redefine_controle()
+
   conta = 0
   
-  print("Selecione a catergoria em que deseja alterar o limite:")
+  print("Selecione a categoria em que deseja cadastrar sua despesa:")
   
   for key in controle.get_categorias():
     print(f"{conta} - {key}")
@@ -39,20 +67,6 @@ def cadastro_de_despesas(controle):
     except ValueError:
       print("Valor inválido, tente novamente.")
 
-  while True:
-    try:
-      data0 = input("Digite a data dessa despesa (DD/MM/AAAA): ")
-      data1 = datetime.strptime(data0, "%d/%m/%Y")
-      break
-
-    except ValueError:
-      print("Data inválida, tente novamente.") 
-  
-  mes = str(data1.month)
-  ano = str(data1.year)
-
-  mes_ano = mes + '/' + ano
-
   descricao = input("Digite uma breve descrição da despesa: ")
 
   data1 = data1.strftime("%d/%m/%Y")
@@ -61,8 +75,11 @@ def cadastro_de_despesas(controle):
 
   categ_selecionada.append_despesas(despesa)
 
-  if (mes_ano in controle.get_meses().keys()):
-    controle.append_meses(mes_ano, categ_selecionada)
+  if (not(repetido)):
+    mes = Mes(mes_ano, controle)
+    lista_meses.append(mes)
 
-  else:
-    controle.create_mes(mes_ano, categ_selecionada)
+  return lista_meses
+
+    
+
