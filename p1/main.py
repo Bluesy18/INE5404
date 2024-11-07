@@ -21,3 +21,8 @@ while True:
   match op:
     case "1":
       loja.registrar_usuario()
+
+    case "2":
+      loja.realizar_login()
+
+    

@@ -1,4 +1,5 @@
 from Usuario import Usuario
+from getpass import getpass
 
 class Loja():
   def __init__(self, estoque):
@@ -68,8 +69,21 @@ class Loja():
     self.usuarios.append(usuario)
 
   def realizar_login(self):
-    pass
-
+    logado = False
+    print("=== LOGIN ===")
+    while True:
+      cpfLogin = input("Digite seu CPF: ")
+      senhaLogin = getpass("Digite sua senha: ")
+      for i in self.usuarios:
+        if(cpfLogin == i.get_cpf() and senhaLogin == i.get_senha()):
+          self.usuario_atual = i
+          logado = True
+          print("Login feito com sucesso.")
+          break
+      if (logado):
+        break
+      print("Informações inválidas, tente novamente.")
+      
   def criar_pedido(self):
     pass
   
