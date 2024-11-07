@@ -9,11 +9,11 @@ loja = Loja(estoque)
 first = True
 
 while True:
-#  print("=== LOJA DE BRINQUEDOS ===")
-#  if (first == True):
-#    loja.registrar_usuario()
+  print("=== LOJA DE BRINQUEDOS ===")
+  if (first == True):
+    loja.registrar_usuario()
     
-#  first = False
+  first = False
 
   print("\nDIGITE A OPERAÇÃO QUE DESEJA REALIZAR:\n1 - CADASTRAR USUÁRIO\n2 - LOGIN\n3 - ADICIONAR BRINQUEDO\n4 - REMOVER BRINQUEDO\n5 - BUSCAR BRINQUEDO\n6 - CRIAR PEDIDO\n7 - HISTÓRICO DE PEDIDOS\n0 - ENCERRAR SISTEMA")
   op = input()
@@ -39,6 +39,9 @@ while True:
 
     case "7":
       loja.historico_pedidos()
+
+    case "0":
+      break
 
     case _:
       print("Operação inválida, tente novamente.")

@@ -13,7 +13,7 @@ class Pedido ():
 
     relat = ', '.join(relatList)
 
-    return f"Usuário: {self.usuario.get_nome()}\nPedidos: {relat}\n"
+    return f"Usuário: {self.usuario.get_nome()}\nPedidos: {relat}\nTotal: R${self.total}\n"
 
   def calcular_total(self):
     for i in range(len(self.quantidades)):
