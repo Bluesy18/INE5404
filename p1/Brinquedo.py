@@ -17,8 +17,5 @@ class Brinquedo ():
   def get_preco(self):
     return self.preco
 
-  def get_faixa_etaria(self):
-    return self.faixa_etaria
-
   def get_qtd_estoque(self):
     return self.qtd_estoque

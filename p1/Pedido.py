@@ -4,7 +4,7 @@ class Pedido ():
     self.brinquedos = brinquedos
     self.brinquedos_escolhidos = brinquedos_escolhidos
     self.quantidades = quantidades
-    self.total = 0
+    self.total = 0.0
 
   def __str__(self):
     relatList = []

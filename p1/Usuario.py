@@ -48,18 +48,6 @@ class Usuario ():
   def get_nome(self):
     return self.nome
 
-  def get_endereco(self):
-    return self.endereco
-
-  def get_telefone(self):
-    return self.telefone
-
-  def get_email(self):
-    return self.email
-
-  def get_cartao_credito(self):
-    return self.cartao_credito
-
   def get_cpf(self):
     return self.cpf
 
