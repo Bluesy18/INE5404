@@ -1,8 +1,5 @@
-from Brinquedo import Brinquedo
 from Estoque import Estoque
 from Loja import Loja
-from Pedido import Pedido
-from Usuario import Usuario
 
 estoque = Estoque()
 loja = Loja(estoque)
