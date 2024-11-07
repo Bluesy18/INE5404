@@ -15,7 +15,7 @@ while True:
     
 #  first = False
 
-  print("\nDIGITE A OPERAÇÃO QUE DESEJA REALIZAR:\n1 - CADASTRAR USUÁRIO\n2 - LOGIN\n3 - ADICIONAR BRINQUEDO\n5 - BUSCAR BRINQUEDO\n0 - ENCERRAR SISTEMA")
+  print("\nDIGITE A OPERAÇÃO QUE DESEJA REALIZAR:\n1 - CADASTRAR USUÁRIO\n2 - LOGIN\n3 - ADICIONAR BRINQUEDO\n4 - REMOVER BRINQUEDO\n5 - BUSCAR BRINQUEDO\n6 - CRIAR PEDIDO\n7 - HISTÓRICO DE PEDIDOS\n0 - ENCERRAR SISTEMA")
   op = input()
 
   match op:
@@ -33,6 +33,12 @@ while True:
 
     case "5":
       loja.estoque.buscar_brinquedo()
+
+    case "6":
+      loja.criar_pedido()
+
+    case "7":
+      loja.historico_pedidos()
 
     case _:
       print("Operação inválida, tente novamente.")

@@ -91,4 +91,7 @@ class Estoque():
       
     print("Nenhum brinquedo com esse nome foi encontrado.")
 
+  def get_brinquedos(self):
+    return self.brinquedos
+
   
