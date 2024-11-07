@@ -5,6 +5,9 @@ class Brinquedo ():
     self.faixa_etaria = faixa_etaria
     self.qtd_estoque = qtd_estoque
 
+  def __str__(self):
+    return f"\nNome: {self.nome}\nPreço: R${self.preco}\nFaixa etária: {self.faixa_etaria}\nQuantidade em estoque: {self.qtd_estoque}"
+
   def atualizar_estoque(self, qtd):
     self.qtd_estoque -= qtd
 
