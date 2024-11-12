@@ -39,7 +39,7 @@ class Usuario ():
 
   def definir_senha(self, senha, usuario):
     for i in usuario.get_info():
-      if(i in senha):
+      if(i.upper() in senha.upper()):
         return False
     
     pattern = r'^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$'
