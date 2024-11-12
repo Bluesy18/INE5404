@@ -76,10 +76,10 @@ classDiagram
     %% Relationships
     Loja o-- Usuario : 0..*
     Loja *-- Estoque : 1..1
-    Loja -- Pedido : 0..*
+    Loja *-- Pedido : 0..*
     Estoque *-- Brinquedo : 0..* 
-    Usuario -- Pedido : 0..*
-    Brinquedo -- Pedido : 1..*
+    Usuario o-- Pedido : 0..*
+    Brinquedo o-- Pedido : 1..*
     Brinquedo <|-- Novo : 1..1
 
 ```
