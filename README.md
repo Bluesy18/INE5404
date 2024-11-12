@@ -7,7 +7,7 @@ POO  2
 classDiagram
     class Loja {
         +estoque: Estoque 
-        +loja: list
+        +usuarios: list
         +pedidos: list
         +usuario_atual: NoneType 
         +registrar_usuario()
@@ -74,11 +74,12 @@ classDiagram
     }
 
     %% Relationships
-    Loja o-- Usuario : 
-    Loja *-- Estoque : 
-    Loja -- Pedido : 
-    Estoque *-- Brinquedo : 
-    Usuario -- Pedido : 
-    Brinquedo -- Pedido : 
-    Brinquedo <|-- Novo : 
+    Loja o-- Usuario : 0..*
+    Loja *-- Estoque : 1..1
+    Loja *-- Pedido : 0..*
+    Estoque *-- Brinquedo : 0..* 
+    Usuario o-- Pedido : 0..*
+    Brinquedo o-- Pedido : 1..*
+    Brinquedo <|-- Novo : 1..1
+
 ```
